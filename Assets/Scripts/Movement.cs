@@ -9,8 +9,6 @@ public class Movement : MonoBehaviour
     [SerializeField] float thrustForce = 10f;
     [SerializeField] float rotationForce = 10f;
 
-    //Audio 
-    //[SerializeField] AudioClip soundClip;
     AudioSource audioSource;
 
     Rigidbody rb;
@@ -19,7 +17,6 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        //audioSource.clip = soundClip;
         audioSource.loop = true;
     }
 
