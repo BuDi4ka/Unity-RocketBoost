@@ -4,17 +4,24 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [SerializeField] InputAction thrust;
+    Rigidbody rb;
+    [SerializeField] float thrustForce = 10f;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void OnEnable()
     {
         thrust.Enable();   
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (thrust.IsPressed())
         {
-            transform.Translate(Vector3.right * Time.deltaTime * 5f);
+            rb.AddRelativeForce(Vector3.up * thrustForce );
         }
     }
 }
