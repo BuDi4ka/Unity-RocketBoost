@@ -32,6 +32,13 @@ public class Movement : MonoBehaviour
         ProcessRotation();
     }
 
+    public void DisableInput()
+    {
+        thrust.Disable();
+        rotation.Disable();
+        Debug.Log("Player input disabled.");
+    }
+
     private void ProcessThrust()
     {
         if (thrust.IsPressed())
