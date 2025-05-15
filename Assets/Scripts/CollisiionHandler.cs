@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,15 +18,18 @@ public class CollisiionHandler : MonoBehaviour
                 break;
             case "Fuel":
                 Debug.Log("Fuel collision detected!");
-                break;      
+                break;
             default:
-                //Destroy(gameObject);
-                //ReloadLevel();
-                playerMovement.DisableInput(); // Disable player movement input
-                Debug.Log("Player input disabled.");
-                Invoke(nameof(ReloadLevel), reloadDelay);
+                StartCrashSequence();
                 break;
         }
+    }
+
+    void StartCrashSequence()
+    {
+        playerMovement.DisableInput();
+        Debug.Log("Player input disabled.");
+        Invoke(nameof(ReloadLevel), reloadDelay);
     }
 
     void LoadNextLevel()
