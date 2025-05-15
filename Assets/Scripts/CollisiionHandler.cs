@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollisiionHandler : MonoBehaviour
 {
     [SerializeField] Movement playerMovement; // Reference to the Movement script
-
+    [SerializeField] private float reloadDelay = 2f;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -17,11 +18,19 @@ public class CollisiionHandler : MonoBehaviour
                 break;
             case "Fuel":
                 Debug.Log("Fuel collision detected!");
-                break;
+                break;      
             default:
-                playerMovement.DisableInput(); // Disable player movement input
                 //Destroy(gameObject);
+                //ReloadLevel();
+                playerMovement.DisableInput(); // Disable player movement input
+                Debug.Log("Player input disabled.");
+                Invoke(nameof(ReloadLevel), reloadDelay);
                 break;
         }
+    }
+
+    void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
