@@ -14,7 +14,7 @@ public class CollisiionHandler : MonoBehaviour
                 Debug.Log("Friendly collision detected!");
                 break;
             case "Finish":
-                LoadNextLevel();
+                StartFinishSequence();  
                 break;
             case "Fuel":
                 Debug.Log("Fuel collision detected!");
@@ -30,6 +30,13 @@ public class CollisiionHandler : MonoBehaviour
         playerMovement.DisableInput();
         Debug.Log("Player input disabled.");
         Invoke(nameof(ReloadLevel), reloadDelay);
+    }
+
+    void StartFinishSequence()
+    {
+        playerMovement.DisableInput();
+        Debug.Log("Player input disabled.");
+        Invoke(nameof(LoadNextLevel), reloadDelay);
     }
 
     void LoadNextLevel()
