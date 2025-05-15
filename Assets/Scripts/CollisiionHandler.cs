@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +15,7 @@ public class CollisiionHandler : MonoBehaviour
                 Debug.Log("Friendly collision detected!");
                 break;
             case "Finish":
-                Debug.Log("Finish collision detected!");
+                LoadNextLevel();
                 break;
             case "Fuel":
                 Debug.Log("Fuel collision detected!");
@@ -26,6 +27,21 @@ public class CollisiionHandler : MonoBehaviour
                 Debug.Log("Player input disabled.");
                 Invoke(nameof(ReloadLevel), reloadDelay);
                 break;
+        }
+    }
+
+    void LoadNextLevel()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        int nextScene = currentScene + 1;
+
+        if (nextScene < SceneManager.sceneCountInBuildSettings)
+    {
+            SceneManager.LoadScene(nextScene);
+        }
+        else
+        {
+            Debug.Log("No more levels to load");
         }
     }
 
