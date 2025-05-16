@@ -8,6 +8,8 @@ public class CollisiionHandler : MonoBehaviour
     [SerializeField] AudioClip crashSound;
     [SerializeField] AudioClip finishSound;
     [SerializeField] float soundVolume = 1f;
+    [SerializeField] ParticleSystem finishParticles;
+    [SerializeField] ParticleSystem crashParticles;
 
     bool isTransitioning = false;
 
@@ -37,6 +39,7 @@ public class CollisiionHandler : MonoBehaviour
         playerMovement.DisableInput();
         Debug.Log("Collided");
         AudioSource.PlayClipAtPoint(crashSound, transform.position, soundVolume);
+        crashParticles.Play();
         Invoke(nameof(ReloadLevel), reloadDelay);
     }
 
@@ -46,6 +49,7 @@ public class CollisiionHandler : MonoBehaviour
         playerMovement.DisableInput();
         Debug.Log("Finish");
         AudioSource.PlayClipAtPoint(finishSound, transform.position, soundVolume);
+        finishParticles.Play(); 
         Invoke(nameof(LoadNextLevel), reloadDelay);
     }
 
