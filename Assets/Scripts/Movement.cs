@@ -8,7 +8,10 @@ public class Movement : MonoBehaviour
     [SerializeField] InputAction rotation;
     [SerializeField] float thrustForce = 10f;
     [SerializeField] float rotationForce = 10f;
-    [SerializeField] AudioClip mainEngine;
+    [SerializeField] AudioClip mainEngineSound;
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem leftEngineParticles;
+    [SerializeField] ParticleSystem rightEngineParticles;
 
     AudioSource audioSource;
 
@@ -49,8 +52,13 @@ public class Movement : MonoBehaviour
             // Start playing the sound if not already playing
             if (!audioSource.isPlaying)
             {
-                audioSource.PlayOneShot(mainEngine);
+                audioSource.PlayOneShot(mainEngineSound);
             }
+            if (!mainEngineParticles.isPlaying)
+            {
+                mainEngineParticles.Play();
+            }
+            
         }
         else
         {
@@ -58,8 +66,10 @@ public class Movement : MonoBehaviour
             if (audioSource.isPlaying)
             {
                 audioSource.Stop();
+                mainEngineParticles.Stop();
             }
         }
+        
     }
 
     private void ProcessRotation()
@@ -69,10 +79,26 @@ public class Movement : MonoBehaviour
         if (rotationInput < 0)
         {
             ApplyRotation(rotationForce);
+            if (!leftEngineParticles.isPlaying)
+            {   
+                rightEngineParticles.Stop();
+                leftEngineParticles.Play();
+            }
+
         }
-        if (rotationInput > 0)
+        else if (rotationInput > 0)
         {
             ApplyRotation(-rotationForce);
+            if (!rightEngineParticles.isPlaying)
+            {
+                leftEngineParticles.Stop();
+                rightEngineParticles.Play();
+            }   
+        }
+        else
+        {
+            leftEngineParticles.Stop();
+            rightEngineParticles.Stop();
         }
     }
 
