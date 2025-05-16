@@ -22,11 +22,11 @@ public class CollisiionHandler : MonoBehaviour
 
     private void RespondToDebugKeys()
     {
-        if (Keyboard.current.lKey.wasPressedThisFrame || Gamepad.current.bButton.wasPressedThisFrame)
+        if (Keyboard.current.lKey.wasPressedThisFrame)
         {
             LoadNextLevel();
         }
-        else if (Keyboard.current.cKey.wasPressedThisFrame || Gamepad.current.xButton.wasPressedThisFrame)
+        else if (Keyboard.current.cKey.wasPressedThisFrame)
         {
             isCollidable = !isCollidable;
             Debug.Log("Collisions toggled " + isCollidable);
