@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class CollisiionHandler : MonoBehaviour
@@ -12,10 +13,29 @@ public class CollisiionHandler : MonoBehaviour
     [SerializeField] ParticleSystem crashParticles;
 
     bool isTransitioning = false;
+    bool isCollidable = true;
 
-    private void OnCollisionEnter(Collision other)                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+    private void Update()
     {
-        if (isTransitioning) { return; } 
+        RespondToDebugKeys();
+    }
+
+    private void RespondToDebugKeys()
+    {
+        if (Keyboard.current.lKey.wasPressedThisFrame || Gamepad.current.bButton.wasPressedThisFrame)
+        {
+            LoadNextLevel();
+        }
+        else if (Keyboard.current.cKey.wasPressedThisFrame || Gamepad.current.xButton.wasPressedThisFrame)
+        {
+            isCollidable = !isCollidable;
+            Debug.Log("Collisions toggled " + isCollidable);
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+    {
+        if (isTransitioning || !isCollidable) { return; } 
         switch (other.gameObject.tag)
         {
             case "Friendly":
