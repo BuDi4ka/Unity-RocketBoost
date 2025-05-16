@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6377417671358724030}
+  - component: {fileID: -7653780956339427585}
+  - component: {fileID: 6340858155904859892}
   m_Layer: 0
   m_Name: Rick's Weird Space Pod
   m_TagString: Untagged
@@ -41,6 +43,56 @@ Transform:
   - {fileID: 5695981567520925337}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7653780956339427585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8902305362784705133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0878db94ea6de4f8705fd1c66c0b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust:
+    m_Name: Thrust
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9e8b041b-c241-45d5-bdf0-afbdf4a58de7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  rotation:
+    m_Name: Rotation
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 59776f7d-469c-4457-82d4-8bd8e2b778ac
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  thrustForce: 1000
+  rotationForce: 100
+  mainEngine: {fileID: 8300000, guid: d5bcd90cd3eb31246992d3699414ae60, type: 3}
+--- !u!114 &6340858155904859892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8902305362784705133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6250ad7cfd54f94fb40cc3ce568c768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
+  reloadDelay: 2
+  crashSound: {fileID: 8300000, guid: 5bf22ea216ba03a4da0e2daf1a058951, type: 3}
+  finishSound: {fileID: 8300000, guid: 7ea26df27aee31145bbaa40fdf107a6c, type: 3}
+  soundVolume: 1
 --- !u!1001 &501387884140361517
 PrefabInstance:
   m_ObjectHideFlags: 0

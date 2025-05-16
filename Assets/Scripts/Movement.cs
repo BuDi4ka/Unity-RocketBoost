@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     [SerializeField] InputAction rotation;
     [SerializeField] float thrustForce = 10f;
     [SerializeField] float rotationForce = 10f;
+    [SerializeField] AudioClip mainEngine;
 
     AudioSource audioSource;
 
@@ -48,7 +49,7 @@ public class Movement : MonoBehaviour
             // Start playing the sound if not already playing
             if (!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             }
         }
         else

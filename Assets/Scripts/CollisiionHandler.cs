@@ -5,9 +5,15 @@ public class CollisiionHandler : MonoBehaviour
 {
     [SerializeField] Movement playerMovement; // Reference to the Movement script
     [SerializeField] private float reloadDelay = 2f;
+    [SerializeField] AudioClip crashSound;
+    [SerializeField] AudioClip finishSound;
+    [SerializeField] float soundVolume = 1f;
+
+    bool isTransitioning = false;
 
     private void OnCollisionEnter(Collision other)
     {
+        if (isTransitioning) { return; } 
         switch (other.gameObject.tag)
         {
             case "Friendly":
@@ -27,15 +33,19 @@ public class CollisiionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
+        isTransitioning = true;
         playerMovement.DisableInput();
-        Debug.Log("Player input disabled.");
+        Debug.Log("Collided");
+        AudioSource.PlayClipAtPoint(crashSound, transform.position, soundVolume);
         Invoke(nameof(ReloadLevel), reloadDelay);
     }
 
     void StartFinishSequence()
     {
+        isTransitioning = true;
         playerMovement.DisableInput();
-        Debug.Log("Player input disabled.");
+        Debug.Log("Finish");
+        AudioSource.PlayClipAtPoint(finishSound, transform.position, soundVolume);
         Invoke(nameof(LoadNextLevel), reloadDelay);
     }
 
