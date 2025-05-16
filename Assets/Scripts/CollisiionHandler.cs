@@ -11,7 +11,7 @@ public class CollisiionHandler : MonoBehaviour
 
     bool isTransitioning = false;
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision other)                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     {
         if (isTransitioning) { return; } 
         switch (other.gameObject.tag)
